@@ -6,8 +6,11 @@
 
 int[] ArrRandom(int lenght = 0, int min = 0, int max = int.MaxValue)
 {
-    if(lenght == 0)
-        lenght = new Random().Next();
+    if (lenght == 0)
+    {
+        lenght = new Random().Next(2,12);
+    }
+
     int[] arr = new int[lenght];
     for (int i = 0; i < arr.Length; i++)
     {
@@ -20,21 +23,14 @@ int[] ArrManually(int lenght)
     int[] arr = new int[lenght];
     for (int i = 0; i < arr.Length; i++)
     {
-        arr[i] = Entry($"Введите значение элемента {arr[i]}");
+        arr[i] = Entry($"Введите значение элемента {i} из {arr.Length-1}");
     }
     return arr;
 }
 
 void Print(int[] array)
 {
-    Console.Write("[");
-    for (int i = 0; i < array.Length; i++)
-    {
-        Console.Write($"{array[i]}");
-        if (i < array.Length - 1)
-            Console.Write(",");
-    }
-    Console.Write("]");
+    Console.Write($"[{string.Join(", ", array)}]");
 }
 
 int Entry(string msg)
@@ -43,7 +39,8 @@ int Entry(string msg)
     {
         try
         {
-            return Convert.ToInt32(Console.ReadLine()); ;
+            Console.WriteLine(msg);
+            return Convert.ToInt32(Console.ReadLine());
         }
         catch (Exception)
         {
